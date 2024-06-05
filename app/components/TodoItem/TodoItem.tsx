@@ -15,15 +15,17 @@ export const TodoItem: React.FC<TodoItemProps> = ({id, content, isDone}) => {
     <>
       <ListItem secondaryAction={
         <IconButton edge="end" aria-label="delete">
-          <DeleteIcon style={{ color: 'pink' }} />
+          <DeleteIcon sx={{ color: 'pink' }} />
         </IconButton>
       }>
         <Checkbox
           checked={isDone}
           inputProps={{ 'aria-label': 'primary checkbox' }}
+          sx={{ marginRight: 1 }}
         />
         <ListItemText
           primary={content}
+          sx={{ textDecoration: isDone ? 'line-through' : 'none' }}
         />
       </ListItem>
     </>
