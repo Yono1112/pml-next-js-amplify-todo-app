@@ -1,6 +1,6 @@
 import React from 'react'
 import { TodoItem } from '../TodoItem/TodoItem'
-import { Box, Divider, List, Paper, Stack, styled } from '@mui/material'
+import { Divider, List } from '@mui/material'
 
 export const TodoList = () => {
   const todos = [
