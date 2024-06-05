@@ -13,10 +13,6 @@ export const TodoList = () => {
     {id: "7", content: "7", isDone: false},
     {id: "8", content: "8", isDone: false},
     {id: "9", content: "9999999999999", isDone: true},
-    {id: "11", content: "10", isDone: false},
-    {id: "12", content: "8", isDone: false},
-    {id: "13", content: "9999999999999", isDone: true},
-    {id: "14", content: "10", isDone: false},
   ]
   return (
     <List sx={{ maxHeight: 650, overflow: "auto" }}>
