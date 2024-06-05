@@ -5,8 +5,7 @@ const TodoList = () => {
   return (
     <>
       <div>TodoList</div>
-      <TodoItem />
-      <TodoItem />
+      <TodoItem id="hoge" content="hogehoge" isDone={false} />
     </>
   )
 }
