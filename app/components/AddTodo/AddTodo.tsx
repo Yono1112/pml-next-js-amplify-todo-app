@@ -2,13 +2,18 @@
 import React from 'react'
 import { Box, Button, FormHelperText, TextField } from '@mui/material'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { todoSchema } from '@/app/validation/schemas';
 
 type inputText = {
   todo: string
 }
 
 export const AddTodo = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({ mode: 'onChange' })
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
+    resolver: yupResolver(todoSchema),
+    mode: 'onChange'
+  });
   const onSubmit: SubmitHandler<inputText> = (data) => {
     console.log(data);
     reset();
@@ -21,7 +26,7 @@ export const AddTodo = () => {
         variant="outlined"
         margin="normal"
         error={!!errors.todo}
-        {...register('todo', { required: "This field is required", maxLength: { value: 20, message: "Max length is 20" }})}
+        {...register('todo')}
       />
       {errors.todo && (
         <FormHelperText error>
