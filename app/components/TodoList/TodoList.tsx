@@ -1,6 +1,6 @@
 import React from 'react'
 import { TodoItem } from '../TodoItem/TodoItem'
-import { Divider, List, Paper, Stack, styled } from '@mui/material'
+import { Box, Divider, List, Paper, Stack, styled } from '@mui/material'
 
 export const TodoList = () => {
   const todos = [
@@ -14,9 +14,12 @@ export const TodoList = () => {
     {id: "8", content: "8", isDone: false},
     {id: "9", content: "9999999999999", isDone: true},
     {id: "10", content: "10", isDone: false},
+    {id: "8", content: "8", isDone: false},
+    {id: "9", content: "9999999999999", isDone: true},
+    {id: "10", content: "10", isDone: false},
   ]
   return (
-    <List>
+    <List sx={{ maxHeight: 700, overflow: "auto" }}>
       {todos.map((item) => {
         return (
           <>
