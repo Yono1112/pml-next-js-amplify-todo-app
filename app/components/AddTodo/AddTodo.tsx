@@ -1,9 +1,24 @@
+import { Button, TextField } from '@mui/material'
 import React from 'react'
 
-const AddTodo = () => {
+export const AddTodo = () => {
   return (
-    <div>AddTodo</div>
+    <>
+      <TextField
+        label="Enter todo"
+        value=""
+        // onChange={(e) => setTodoText(e.target.value)}
+        fullWidth
+        variant="outlined"
+        margin="normal"
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        // onClick={addTodo}
+        fullWidth>
+        Submit
+      </Button>
+    </>
   )
 }
-
-export default AddTodo
