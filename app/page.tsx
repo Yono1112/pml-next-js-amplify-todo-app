@@ -1,30 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { TodoList } from "@/app/components/TodoList/TodoList";
 import { AddTodo } from "@/app/components/AddTodo/AddTodo";
-import { Todo } from "@/app/types/todo";
+import { useTodo } from "@/app/hooks/useTodo";
 
 export default function Home() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  const addTodo = (todo: string) => {
-    const todosLength = todos.length + 1;
-    const newTodo = {
-      id: todosLength.toString(),
-      title: todo,
-      isDone: false,
-    };
-    setTodos([...todos, newTodo]);
-  };
-
-  const toggleComplete = (id: string) => {
-    setTodos(todos.map(todo => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
-  };
-
-  const removeTodo = (id: string) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
+  const { todos, addTodo, toggleComplete, removeTodo } = useTodo();
 
   return (
     <Box display="flex" justifyContent="center">

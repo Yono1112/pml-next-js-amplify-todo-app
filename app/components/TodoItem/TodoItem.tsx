@@ -1,8 +1,6 @@
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
-// import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-// import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 type TodoItemProps = {
     id: string
