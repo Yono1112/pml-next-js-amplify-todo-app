@@ -6,11 +6,11 @@ import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
 
 type TodoItemProps = {
     id: string
-    content: string
+    title: string
     isDone: boolean
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({id, content, isDone}) => {
+export const TodoItem: React.FC<TodoItemProps> = ({id, title, isDone}) => {
   return (
     <>
       <ListItem secondaryAction={
@@ -24,7 +24,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({id, content, isDone}) => {
           sx={{ marginRight: 1 }}
         />
         <ListItemText
-          primary={content}
+          primary={title}
           sx={{ textDecoration: isDone ? 'line-through' : 'none' }}
         />
       </ListItem>
