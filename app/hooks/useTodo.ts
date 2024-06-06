@@ -12,7 +12,6 @@ export const useTodo = () => {
             isDone: false,
         };
         setTodos([...todos, newTodo]);
-        console.log('newTodo', newTodo);
     };
 
     const toggleComplete = (id: string) => {
