@@ -9,17 +9,27 @@ type inputText = {
   todo: string
 }
 
-export const AddTodo = () => {
+type AddTodoProps = {
+  addTodo: (todo: string) => void
+}
+
+export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
     resolver: yupResolver(todoSchema),
     mode: 'onChange'
   });
+
   const onSubmit: SubmitHandler<inputText> = (data) => {
-    console.log(data);
+    addTodo(data.todo);
     reset();
   }
+
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate // disable default browser validation
+    >
       <TextField
         label="Enter todo"
         fullWidth
