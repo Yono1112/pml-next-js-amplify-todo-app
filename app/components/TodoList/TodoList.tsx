@@ -1,5 +1,5 @@
 import React from 'react'
-import { TodoItem } from '../TodoItem/TodoItem'
+import { TodoItem } from '@/app/components/TodoItem/TodoItem'
 import { Divider, List } from '@mui/material'
 import { Todo } from '@/app/types/todo'
 
