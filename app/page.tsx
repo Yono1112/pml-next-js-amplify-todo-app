@@ -12,21 +12,23 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(outputs);
 
-function Home({ signOut, user }: { signOut: () => void; user: any }){
+function Home(){
   const { todos, addTodo, toggleComplete, removeTodo } = useTodo();
 
   return (
     <Authenticator>
-      <Box display="flex" justifyContent="center">
-        <Paper elevation={3} sx={{ padding: 2, width: '100%', maxWidth: 800, marginTop: 3 }}>
-          <Typography variant="h4" gutterBottom align="center">
-            Todo List {user ? `for ${user.username}` : ''}
-          </Typography>
-          <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
-          <AddTodo addTodo={addTodo} />
-          <Button variant="contained" onClick={signOut}>Sign Out</Button>
-        </Paper>
-      </Box>
+      {({ signOut, user }) => (
+        <Box display="flex" justifyContent="center">
+          <Paper elevation={3} sx={{ padding: 2, width: '100%', maxWidth: 800, marginTop: 3 }}>
+            <Typography variant="h4" gutterBottom align="center">
+              Todo List {user ? `for ${user.username}` : ''}
+            </Typography>
+            <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
+            <AddTodo addTodo={addTodo} />
+            <Button variant="contained" onClick={signOut}>Sign Out</Button>
+          </Paper>
+        </Box>
+      )}
     </Authenticator>
   );
 }
