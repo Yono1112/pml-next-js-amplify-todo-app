@@ -23,23 +23,15 @@ export const useTodo = () => {
         fetchTodos();
     }, []);
 
-    const addTodo = async () => {
+    const addTodo = async (todo: string) => {
         // console.log('createTodo');
         await client.models.Todo.create({
         id: todos.length.toString(),
-        title: window.prompt('Enter todo title'),
+        title: todo,
         isDone: false,
         });
         fetchTodos();
     };
-
-    // const addTodo = async (todo: string) => {
-    //     await client.models.Todo.create({
-    //         title: todo,
-    //         isDone: false
-    //     });
-    //     fetchTodos();
-    // }
 
     // const addTodo = (todo: string) => {
     //     const todosLength = todos.length;

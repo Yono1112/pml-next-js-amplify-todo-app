@@ -27,9 +27,11 @@
   "data": {
     "url": "https://du6khobnbjgjjghn7mcw7hg57q.appsync-api.ap-southeast-2.amazonaws.com/graphql",
     "aws_region": "ap-southeast-2",
-    "default_authorization_type": "AWS_IAM",
+    "api_key": "da2-7wbsajx2kbbhndunrxmlzsi4ke",
+    "default_authorization_type": "API_KEY",
     "authorization_types": [
-      "AMAZON_COGNITO_USER_POOLS"
+      "AMAZON_COGNITO_USER_POOLS",
+      "AWS_IAM"
     ],
     "model_introspection": {
       "version": 1,
@@ -96,7 +98,7 @@
                 "rules": [
                   {
                     "allow": "public",
-                    "provider": "iam",
+                    "provider": "apiKey",
                     "operations": [
                       "create",
                       "update",

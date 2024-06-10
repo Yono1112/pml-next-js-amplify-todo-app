@@ -4,8 +4,8 @@ import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
 
 type TodoItemProps = {
     id: string
-    title: string | undefined
-    isDone: boolean | undefined
+    title: string
+    isDone: boolean
     toggleComplete: (id: string) => void;
     removeTodo: (id: string) => void;
 }
@@ -30,6 +30,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({id, title, isDone, toggleComp
         />
         <ListItemText
           primary={title}
+          secondary={id}
           sx={{ textDecoration: isDone ? 'line-through' : 'none' }}
         />
       </ListItem>
