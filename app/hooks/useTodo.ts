@@ -10,17 +10,24 @@ export const useTodo = () => {
     // const [todos, setTodos] = useState<Todo[]>([]);
     const [ todos, setTodos ] = useState<Schema["Todo"]["type"][]>([]);
 
-    const fetchTodos = async () => {
-        const { data: items, errors } = await client.models.Todo.list();
-        if (errors) {
-            console.error(errors);
-            return;
-        }
-        setTodos(items);
-    };
+    // const fetchTodos = async () => {
+    //     const { data: items, errors } = await client.models.Todo.list();
+    //     if (errors) {
+    //         console.error(errors);
+    //         return;
+    //     }
+    //     setTodos(items);
+    // };
 
     useEffect(() => {
-        fetchTodos();
+        // fetchTodos();
+        const sub = client.models.Todo.observeQuery().subscribe({
+            next: ({ items }) => {
+            setTodos([...items]);
+            },
+        });
+
+        return () => sub.unsubscribe();
     }, []);
 
     const addTodo = async (todo: string) => {
@@ -30,7 +37,7 @@ export const useTodo = () => {
         title: todo,
         isDone: false,
         });
-        fetchTodos();
+        // fetchTodos();
     };
 
     // const addTodo = (todo: string) => {
@@ -47,8 +54,10 @@ export const useTodo = () => {
         setTodos(todos.map(todo => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
     };
 
-    const removeTodo = (id: string) => {
-        setTodos(todos.filter(todo => todo.id !== id));
+    const removeTodo = async (id: string) => {
+        // setTodos(todos.filter(todo => todo.id !== id));
+        await client.models.Todo.delete({ id });
+        // fetchTodos();
     };
 
     return {
