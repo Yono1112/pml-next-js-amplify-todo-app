@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Todo } from '@/app/types/todo';
 import type { Schema } from '@/amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
+import { v4 as uuid } from 'uuid';
 
 const client = generateClient<Schema>();
 
@@ -33,7 +34,7 @@ export const useTodo = () => {
     const addTodo = async (todo: string) => {
         // console.log('createTodo');
         await client.models.Todo.create({
-        id: todos.length.toString(),
+        id: uuid(),
         title: todo,
         isDone: false,
         });

@@ -30,7 +30,6 @@ export const TodoItem: React.FC<TodoItemProps> = ({id, title, isDone, toggleComp
         />
         <ListItemText
           primary={title}
-          secondary={id}
           sx={{ textDecoration: isDone ? 'line-through' : 'none' }}
         />
       </ListItem>
