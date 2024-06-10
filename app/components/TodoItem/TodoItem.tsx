@@ -4,8 +4,8 @@ import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
 
 type TodoItemProps = {
     id: string
-    title: string
-    isDone: boolean
+    title: string | undefined
+    isDone: boolean | undefined
     toggleComplete: (id: string) => void;
     removeTodo: (id: string) => void;
 }
