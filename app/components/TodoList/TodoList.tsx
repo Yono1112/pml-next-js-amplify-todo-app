@@ -4,7 +4,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Checkbox, Divider, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import { Todo } from '@/app/types/todo'
 import type { Schema } from '@/amplify/data/resource'
-import { id } from 'ethers/lib/utils'
 
 type TodoListProps = {
   todos: Schema["Todo"]["type"][],
@@ -15,7 +14,7 @@ type TodoListProps = {
 export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }) => {
   return (
     <List sx={{ maxHeight: 650, overflow: "auto" }}>
-      {todos.map((item) => {
+      {/* {todos.map((item) => {
         console.log(item);
         return (
           <>
@@ -30,7 +29,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, remov
             <Divider />
           </>
         );
-      })}
+      })} */}
     </List>
   )
 }
