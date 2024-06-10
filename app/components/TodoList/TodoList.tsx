@@ -1,10 +1,13 @@
 import React from 'react'
 import { TodoItem } from '@/app/components/TodoItem/TodoItem'
-import { Divider, List } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Checkbox, Divider, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import { Todo } from '@/app/types/todo'
+import type { Schema } from '@/amplify/data/resource'
+import { id } from 'ethers/lib/utils'
 
 type TodoListProps = {
-  todos: Todo[]
+  todos: Schema["Todo"]["type"][],
   toggleComplete: (id: string) => void
   removeTodo: (id: string) => void
 }
@@ -13,6 +16,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, remov
   return (
     <List sx={{ maxHeight: 650, overflow: "auto" }}>
       {todos.map((item) => {
+        console.log(item);
         return (
           <>
             <TodoItem

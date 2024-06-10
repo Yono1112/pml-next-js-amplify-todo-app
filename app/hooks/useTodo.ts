@@ -1,8 +1,34 @@
-import { useState } from 'react';
-import { Todo } from '@/app/types/todo';
+// import { fetch } from './../../node_modules/@whatwg-node/fetch/dist/index.d';
+import { useEffect, useState } from 'react';
+import { Todo } from '@/app/types/todo'; import type { Schema } from '@/amplify/data/resource';
+import { generateClient } from 'aws-amplify/data';
+
+// const client = generateClient<Schema>();
 
 export const useTodo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
+    // const [ todos, setTodos ] = useState<Schema["Todo"]["type"][]>([]);
+
+    // const fetchTodos = async () => {
+    //     const { data: items, errors } = await client.models.Todo.list();
+    //     if (errors) {
+    //         console.error(errors);
+    //         return;
+    //     }
+    //     setTodos(items);
+    // };
+
+    // useEffect(() => {
+    //     fetchTodos();
+    // }, []);
+
+    // const addTodo = async (todo: string) => {
+    //     await client.models.Todo.create({
+    //         title: todo,
+    //         isDone: false
+    //     });
+    //     fetchTodos();
+    // }
 
     const addTodo = (todo: string) => {
         const todosLength = todos.length;

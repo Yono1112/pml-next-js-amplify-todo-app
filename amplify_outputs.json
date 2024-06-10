@@ -40,14 +40,21 @@
             "id": {
               "name": "id",
               "isArray": false,
-              "type": "ID",
+              "type": "String",
               "isRequired": true,
               "attributes": []
             },
-            "content": {
-              "name": "content",
+            "title": {
+              "name": "title",
               "isArray": false,
               "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "isDone": {
+              "name": "isDone",
+              "isArray": false,
+              "type": "Boolean",
               "isRequired": false,
               "attributes": []
             },
@@ -74,6 +81,14 @@
             {
               "type": "model",
               "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
             },
             {
               "type": "auth",
