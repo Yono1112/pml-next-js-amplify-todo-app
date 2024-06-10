@@ -1,7 +1,6 @@
 import React from 'react'
 import { TodoItem } from '@/app/components/TodoItem/TodoItem'
 import {  Divider, List } from '@mui/material';
-import { Todo } from '@/app/types/todo'
 import type { Schema } from '@/amplify/data/resource'
 
 type TodoListProps = {
@@ -14,7 +13,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, remov
   return (
     <List sx={{ maxHeight: 650, overflow: "auto" }}>
       {todos.map((item) => {
-        console.log(item);
+        // console.log(item);
         return (
           <>
             <TodoItem
