@@ -7,14 +7,7 @@ const client = generateClient<Schema>();
 export const useTodo = () => {
     const [ todos, setTodos ] = useState<Schema["Todo"]["type"][]>([]);
 
-    // const fetchTodos = async () => {
-    //     const { data: items, errors } = await client.models.Todo.list();
-    //     setTodos(items);
-    // };
-
     useEffect(() => {
-        // console.log('useEffect');
-        // fetchTodos();
         const sub = client.models.Todo.observeQuery().subscribe({
             next: ({ items }) => {
             setTodos([...items]);
@@ -23,8 +16,24 @@ export const useTodo = () => {
         return () => sub.unsubscribe();
     }, []);
 
-    const toggleComplete = (id: string) => {
-        setTodos(todos.map(todo => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
+    const toggleComplete = async (id: string) => {
+        const todo = todos.find((todo) => todo.id === id);
+        if (!todo) {
+            return;
+        }
+
+        const updatedTodo = {
+            ...todo,
+            isDone: !todo.isDone,
+        };
+
+        await client.models.Todo.update({
+            id: updatedTodo.id,
+            title: updatedTodo.title,
+            isDone: updatedTodo.isDone,
+            owner: updatedTodo.owner,
+        });
+        setTodos(todos.map(t => t.id === id ? updatedTodo : t));
     };
 
     const removeTodo = async (id: string) => {
