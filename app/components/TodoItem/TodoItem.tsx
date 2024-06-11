@@ -1,6 +1,6 @@
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
+import { Checkbox, Divider, IconButton, ListItem, ListItemText } from '@mui/material';
 
 type TodoItemProps = {
     id: string
@@ -33,6 +33,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({id, title, isDone, toggleComp
           sx={{ textDecoration: isDone ? 'line-through' : 'none' }}
         />
       </ListItem>
+      <Divider />
     </>
   )
 }

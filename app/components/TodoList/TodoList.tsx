@@ -15,17 +15,14 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, remov
       {todos.map((item) => {
         // console.log(item);
         return (
-          <>
-            <TodoItem
-              key={item.id}
-              id={item.id ?? ""}
-              title={item.title ?? ""}
-              isDone={item.isDone ?? false}
-              toggleComplete={toggleComplete}
-              removeTodo={removeTodo}
-            />
-            <Divider />
-          </>
+          <TodoItem
+            key={item.id}
+            id={item.id ?? ""}
+            title={item.title ?? ""}
+            isDone={item.isDone ?? false}
+            toggleComplete={toggleComplete}
+            removeTodo={removeTodo}
+          />
         );
       })}
     </List>
