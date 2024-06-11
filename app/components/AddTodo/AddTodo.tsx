@@ -16,10 +16,7 @@ type AddTodoProps = {
   addTodo: (todo: string) => void
 }
 
-const client = generateClient<Schema>();
-
-// export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
-export const AddTodo = () => {
+export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
     resolver: yupResolver(todoSchema),
     mode: 'onChange'
@@ -30,19 +27,19 @@ export const AddTodo = () => {
     reset();
   }
 
-  const addTodo = async (todo: string) => {
-      // console.log('addTodo');
-      await client.models.Todo.create({
-      id: uuid(),
-      title: todo,
-      isDone: false,
-      },
-      {
-          authMode: 'userPool',
-      }
-      );
-      // console.log('addTodo done');
-  };
+  // const addTodo = async (todo: string) => {
+  //     // console.log('addTodo');
+  //     await client.models.Todo.create({
+  //     id: uuid(),
+  //     title: todo,
+  //     isDone: false,
+  //     },
+  //     {
+  //         authMode: 'userPool',
+  //     }
+  //     );
+  //     // console.log('addTodo done');
+  // };
 
   return (
     <Box

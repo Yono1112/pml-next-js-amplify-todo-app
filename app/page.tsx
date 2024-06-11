@@ -11,8 +11,7 @@ import { useTodo } from "./hooks/useTodo";
 Amplify.configure(outputs);
 
 function Home(){
-  // const { todos, addTodo, toggleComplete, removeTodo } = useTodo();
-  const { todos, toggleComplete, removeTodo } = useTodo();
+  const { todos, addTodo, toggleComplete, removeTodo } = useTodo();
 
   return (
     <Authenticator>
@@ -28,8 +27,7 @@ function Home(){
               </Button>
             </Box>
             <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
-            {/* <AddTodo addTodo={addTodo} /> */}
-            <AddTodo />
+            <AddTodo addTodo={addTodo} />
           </Paper>
         </Box>
       )}
