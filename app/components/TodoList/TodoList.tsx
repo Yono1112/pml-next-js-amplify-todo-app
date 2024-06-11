@@ -1,19 +1,14 @@
 import React from 'react'
 import { TodoItem } from '@/app/components/TodoItem/TodoItem'
 import { List } from '@mui/material';
-import type { Schema } from '@/amplify/data/resource'
+import { useTodo } from '@/app/hooks/useTodo';
 
-type TodoListProps = {
-  todos: Schema["Todo"]["type"][],
-  toggleComplete: (id: string) => void
-  removeTodo: (id: string) => void
-}
+export const TodoList = () => {
+  const { todos, toggleComplete, removeTodo } = useTodo();
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }) => {
   return (
     <List sx={{ maxHeight: 650, overflow: "auto" }}>
       {todos.map((item) => {
-        // console.log(item);
         return (
           <TodoItem
             key={item.id}

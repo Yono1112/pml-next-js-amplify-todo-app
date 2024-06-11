@@ -12,11 +12,9 @@ type inputText = {
   todo: string
 }
 
-type AddTodoProps = {
-  addTodo: (todo: string) => void
-}
+const client = generateClient<Schema>();
 
-export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
+export const AddTodo = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
     resolver: yupResolver(todoSchema),
     mode: 'onChange'
@@ -27,19 +25,17 @@ export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
     reset();
   }
 
-  // const addTodo = async (todo: string) => {
-  //     // console.log('addTodo');
-  //     await client.models.Todo.create({
-  //     id: uuid(),
-  //     title: todo,
-  //     isDone: false,
-  //     },
-  //     {
-  //         authMode: 'userPool',
-  //     }
-  //     );
-  //     // console.log('addTodo done');
-  // };
+  const addTodo = async (todo: string) => {
+      await client.models.Todo.create({
+      id: uuid(),
+      title: todo,
+      isDone: false,
+      },
+      {
+          authMode: 'userPool',
+      }
+      );
+  };
 
   return (
     <Box

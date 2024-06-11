@@ -6,13 +6,10 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import '@aws-amplify/ui-react/styles.css';
-import { useTodo } from "./hooks/useTodo";
 
 Amplify.configure(outputs);
 
 function Home(){
-  const { todos, addTodo, toggleComplete, removeTodo } = useTodo();
-
   return (
     <Authenticator>
       {({ signOut, user }) => (
@@ -26,8 +23,8 @@ function Home(){
                 Sign Out
               </Button>
             </Box>
-            <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
-            <AddTodo addTodo={addTodo} />
+            <TodoList/>
+            <AddTodo/>
           </Paper>
         </Box>
       )}
