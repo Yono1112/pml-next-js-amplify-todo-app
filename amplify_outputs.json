@@ -60,6 +60,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -89,6 +96,16 @@
               "properties": {
                 "fields": [
                   "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "todosByOwner",
+                "queryField": "listTodoByOwner",
+                "fields": [
+                  "owner"
                 ]
               }
             },

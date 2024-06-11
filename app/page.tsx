@@ -24,7 +24,7 @@ function Home(){
               </Button>
             </Box>
             <TodoList/>
-            <AddTodo/>
+            <AddTodo username={user?.username}/>
           </Paper>
         </Box>
       )}

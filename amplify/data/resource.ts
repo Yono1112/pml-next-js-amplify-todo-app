@@ -12,7 +12,9 @@ const schema = a.schema({
       id: a.string(),
       title: a.string(),
       isDone: a.boolean(),
+      owner: a.string(),
     })
+    .secondaryIndexes((index) => [index("owner")])
     .authorization((allow) => [
       allow.owner(),
     ]),

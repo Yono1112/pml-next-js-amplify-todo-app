@@ -12,29 +12,38 @@ type inputText = {
   todo: string
 }
 
+type AddTodoProps = {
+  username: string | undefined
+}
+
 const client = generateClient<Schema>();
 
-export const AddTodo = () => {
+export const AddTodo: React.FC<AddTodoProps> = ({username}) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
     resolver: yupResolver(todoSchema),
     mode: 'onChange'
   });
 
   const onSubmit: SubmitHandler<inputText> = (data) => {
-    addTodo(data.todo);
-    reset();
+    if (username) {
+      addTodo(data.todo, username);
+      reset();
+    } else {
+      console.error("Username is not defined");
+    }
   }
 
-  const addTodo = async (todo: string) => {
-      await client.models.Todo.create({
-      id: uuid(),
-      title: todo,
-      isDone: false,
-      },
-      {
-          authMode: 'userPool',
-      }
-      );
+  const addTodo = async (todo: string, username: string) => {
+    await client.models.Todo.create({
+    id: uuid(),
+    title: todo,
+    isDone: false,
+    owner: username,
+    },
+    {
+        authMode: 'userPool',
+    }
+    );
   };
 
   return (
