@@ -1,6 +1,6 @@
 import React from 'react'
 import { TodoItem } from '@/app/components/TodoItem/TodoItem'
-import {  Divider, List } from '@mui/material';
+import { List } from '@mui/material';
 import type { Schema } from '@/amplify/data/resource'
 
 type TodoListProps = {

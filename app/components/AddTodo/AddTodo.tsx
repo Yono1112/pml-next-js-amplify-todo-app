@@ -4,6 +4,9 @@ import { Box, Button, FormHelperText, TextField } from '@mui/material'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { todoSchema } from '@/app/validation/schemas';
+import { v4 as uuid } from 'uuid';
+import { generateClient } from 'aws-amplify/data';
+import type { Schema } from '@/amplify/data/resource';
 
 type inputText = {
   todo: string
@@ -13,7 +16,10 @@ type AddTodoProps = {
   addTodo: (todo: string) => void
 }
 
-export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
+const client = generateClient<Schema>();
+
+// export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
+export const AddTodo = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<inputText>({
     resolver: yupResolver(todoSchema),
     mode: 'onChange'
@@ -23,6 +29,20 @@ export const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
     addTodo(data.todo);
     reset();
   }
+
+  const addTodo = async (todo: string) => {
+      // console.log('addTodo');
+      await client.models.Todo.create({
+      id: uuid(),
+      title: todo,
+      isDone: false,
+      },
+      {
+          authMode: 'userPool',
+      }
+      );
+      // console.log('addTodo done');
+  };
 
   return (
     <Box

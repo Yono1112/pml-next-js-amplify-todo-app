@@ -11,6 +11,7 @@ type TodoItemProps = {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({id, title, isDone, toggleComplete, removeTodo }) => {
+  // console.log('TodoItem', title);
   return (
     <>
       <ListItem secondaryAction={
